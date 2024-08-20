@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfj3ra4ku7722"]
+
+[ext_resource type="Texture2D" uid="uid://ccy0y70qbsene" path="res://Assets/Eagle/eagle-attack.png" id="1_bgxwn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5n3k"]
+atlas = ExtResource("1_bgxwn")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbr3f"]
+atlas = ExtResource("1_bgxwn")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rskey"]
+atlas = ExtResource("1_bgxwn")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqnvs"]
+atlas = ExtResource("1_bgxwn")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ttdhf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5n3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbr3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rskey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqnvs")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h13tx"]
+radius = 19.3132
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 61)
+sprite_frames = SubResource("SpriteFrames_ttdhf")
+animation = &"Fly"
+autoplay = "Fly"
+frame_progress = 0.332706
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 63)
+shape = SubResource("CircleShape2D_h13tx")
