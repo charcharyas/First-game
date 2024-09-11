@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 150.0
+const JUMP_VELOCITY = -300.0
 @onready var sprite = $AnimatedSprite2D
 
 func _physics_process(delta):
@@ -19,10 +19,22 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	# this part is where were move left and right
 	var direction = Input.get_axis("left", "Move right")
+	
+	#flip character
+	if direction >0:
+		sprite.flip_h = false
+	elif direction <0:
+		sprite.flip_h = true
+	
+	if direction == 0:
+		sprite.play ("Idle")
+	else:
+		sprite.play ("Run")
 	#apply movement
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+
 
 	move_and_slide()
